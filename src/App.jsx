@@ -1,3 +1,4 @@
+import {useState} from "react";
 import reactImageState from "./assets/state-mgmt.png";
 import reactImageJsx from "./assets/jsx-ui.png";
 import reactCore from "./assets/react-core-concepts.png";
@@ -7,6 +8,13 @@ import TabButton from "./components/TabButton";
 // kondiisonal rendering
 
 function App() {
+  const [activeTab, setActiveTab] = useState("Please Click Tab");
+
+  function ClickTab(ClickedTab) {
+    setActiveTab(ClickedTab); 
+    console.log(ClickedTab);
+  }
+
   return (
     <div>
       <Header />
@@ -36,12 +44,14 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton>Components</TabButton>
-            <TabButton>Jsx</TabButton>
-            <TabButton>Props</TabButton>
-            <TabButton>State</TabButton>
-
+            <TabButton onSelected={() => ClickTab("Components")}>
+              Components
+            </TabButton>
+            <TabButton onSelected={() => ClickTab("jsx")}>Jsx</TabButton>
+            <TabButton onSelected={() => ClickTab("Props")}>Props</TabButton>
+            <TabButton onSelected={() => ClickTab("State")}>State</TabButton>
           </menu>
+         {activeTab}
         </section>
       </main>
     </div>
