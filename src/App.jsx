@@ -1,17 +1,18 @@
-import {useState} from "react";
+import { useState } from "react";
 import reactImageState from "./assets/state-mgmt.png";
 import reactImageJsx from "./assets/jsx-ui.png";
 import reactCore from "./assets/react-core-concepts.png";
 import Header from "./components/Header";
 import CoreConcept from "./components/CoreConcept";
 import TabButton from "./components/TabButton";
+import { EXAMPLES } from "./data.js";
 // kondiisonal rendering
 
 function App() {
-  const [activeTab, setActiveTab] = useState("Please Click Tab");
+  const [activeTab, setActiveTab] = useState("components");
 
   function ClickTab(ClickedTab) {
-    setActiveTab(ClickedTab); 
+    setActiveTab(ClickedTab);
     console.log(ClickedTab);
   }
 
@@ -44,14 +45,20 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelected={() => ClickTab("Components")}>
+            <TabButton onSelected={() => ClickTab("components")}>
               Components
             </TabButton>
             <TabButton onSelected={() => ClickTab("jsx")}>Jsx</TabButton>
-            <TabButton onSelected={() => ClickTab("Props")}>Props</TabButton>
-            <TabButton onSelected={() => ClickTab("State")}>State</TabButton>
+            <TabButton onSelected={() => ClickTab("props")}>Props</TabButton>
+            <TabButton onSelected={() => ClickTab("state")}>State</TabButton>
           </menu>
-         {activeTab}
+          <div id="tab-content">
+            <h3>{EXAMPLES[activeTab].title}</h3>
+            <p>{EXAMPLES[activeTab].description}</p>
+            <pre>
+              <code>{EXAMPLES[activeTab].code}</code>
+            </pre>
+          </div>
         </section>
       </main>
     </div>
